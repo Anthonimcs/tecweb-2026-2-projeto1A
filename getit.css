@@ -108,6 +108,8 @@ body {
 }
 
 .card {
+  position: relative;
+
   display: flex;
   flex-direction: column;
 
@@ -118,6 +120,12 @@ body {
   border-radius: 6px;
 
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.40);
+}
+
+.delete-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
 }
 
 .card-title {

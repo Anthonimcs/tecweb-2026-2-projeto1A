@@ -1,8 +1,11 @@
-from utils import load_data, load_template, add_notes, build_response
+from utils import load_template, build_response
 from urllib.parse import unquote_plus
+from database import Database, Note
 
 def index(request):
     # A string de request sempre começa com o tipo da requisição (ex: GET, POST)
+    db = Database("notes")
+    
     if request.startswith('POST'):
         request = request.replace('\r', '')  # Remove caracteres indesejados
         # Cabeçalho e corpo estão sempre separados por duas quebras de linha
@@ -17,16 +20,26 @@ def index(request):
         for chave_valor in corpo.split('&'):
             chave, valor = chave_valor.split('=')
             params[unquote_plus(chave)] = unquote_plus(valor)
-        add_notes(params)
+        note = Note(title=params["titulo"], content=params["detalhes"])
+        db.add(note)
 
-    # Cria uma lista de <li>'s para cada anotação
+    # Busca todas as notas do banco:
+    all_notes = db.get_all()
+
+    # Cria o HTML de cada anotação
     # Se tiver curiosidade: https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions
     note_template = load_template('components/note.html')
+
     notes_li = [
-        note_template.format(title=dados['titulo'], details=dados['detalhes'])
-        for dados in load_data('notes.json')
+        note_template.format(title=note.title, details=note.content, id=note.id)
+        for note in all_notes
     ]
+
     notes = '\n'.join(notes_li)
     body = load_template('index.html').format(notes=notes)
 
     return build_response(body=body)
+
+def delete_note(id):
+    db = Database("notes")
+    db.delete(id)
