@@ -1,4 +1,4 @@
-from utils import load_data, load_template, add_notes
+from utils import load_data, load_template, add_notes, build_response
 from urllib.parse import unquote_plus
 
 def index(request):
@@ -27,5 +27,6 @@ def index(request):
         for dados in load_data('notes.json')
     ]
     notes = '\n'.join(notes_li)
+    body = load_template('index.html').format(notes=notes)
 
-    return load_template('index.html').format(notes=notes).encode()
+    return build_response(body=body)

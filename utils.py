@@ -23,7 +23,7 @@ def load_data(arquivo_JSON):
 def load_template(nome_template):
     caminho = Path("templates") / nome_template
 
-    with open(caminho, 'r') as arquivo:
+    with open(caminho, 'r', encoding="utf-8") as arquivo:
         texto = arquivo.read()
         return texto
 
