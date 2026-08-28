@@ -1,7 +1,7 @@
 import socket
 from pathlib import Path
 from utils import extract_route, read_file, build_response
-from views import index, delete_note
+from views import index, delete_note, update_note
 
 CUR_DIR = Path(__file__).parent
 SERVER_HOST = 'Localhost'
@@ -36,6 +36,9 @@ while True:
             reason='See Other',
             headers='Location: /'
         )
+    elif route.startswith('update/'):
+            note_id = int(route.split("/")[1])
+            response = update_note(request, note_id)
     else:
         response = build_response()
 

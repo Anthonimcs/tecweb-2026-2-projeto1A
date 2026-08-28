@@ -43,3 +43,31 @@ def index(request):
 def delete_note(id):
     db = Database("notes")
     db.delete(id)
+
+def update_note(request, note_id):
+    db = Database("notes")
+    if request.startswith('POST'):
+        request = request.replace('\r', '')  # Remove caracteres indesejados
+        # Cabeçalho e corpo estão sempre separados por duas quebras de linha
+        partes = request.split('\n\n')
+        corpo = partes[1]
+        params = {}
+        # Preencha o dicionário params com as informações do corpo da requisição
+        # O dicionário conterá dois valores, o título e a descrição.
+        # Posteriormente pode ser interessante criar uma função que recebe a
+        # requisição e devolve os parâmetros para desacoplar esta lógica.
+        # Dica: use o método split da string e a função unquote_plus
+        for chave_valor in corpo.split('&'):
+            chave, valor = chave_valor.split('=')
+            params[unquote_plus(chave)] = unquote_plus(valor)
+        note = Note(title=params["titulo"], content=params["detalhes"], id=note_id)
+        db.update(note)
+        return build_response(
+                                code=303,
+                                reason='See Other',
+                                headers='Location: /'
+                            )
+    else: 
+        note = db.get_note(note_id)
+        body = load_template('update.html').format(title=note.title, details=note.content) 
+        return build_response(body=body)

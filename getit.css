@@ -128,6 +128,12 @@ body {
   right: 8px;
 }
 
+.update-button {
+  position: absolute;
+  top: 8px;
+  right: 35px;
+}
+
 .card-title {
   margin: 0;
 
@@ -158,7 +164,6 @@ body {
 
   background-color: #ffffff; 
   width: 492px;
-  height: 110px;
   margin: 24px auto;
   padding: 10px;
 
@@ -199,6 +204,36 @@ body {
   border-radius: 2px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
   cursor: pointer; 
+}
+
+.update-buttons {
+  display: flex;
+  width: 100%;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.40);
+}
+
+.btn-cancelar,
+.btn-salvar {
+  flex: 1;
+  padding: 8px;
+
+  border: none;
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  text-align: center;
+  text-decoration: none;
+
+  cursor: pointer;
+}
+
+.btn-cancelar {
+  background-color: #ffffff;
+  color: #2c2c2c;
+}
+
+.btn-salvar {
+  background-color: #f7d736;
+  color: #2c2c2c;
 }
 
 .card-color-1 { background-color: #ead3a7; }

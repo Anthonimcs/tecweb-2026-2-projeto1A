@@ -38,6 +38,16 @@ class Database:
         (note_id,))
         self.conn.commit()
 
+    def get_note(self, id_note):
+            cursor = self.conn.execute("SELECT id, title, content FROM note")
+            for linha in cursor:
+                id = linha[0]
+                title = linha[1]
+                content = linha[2]
+                if id == id_note:
+                    note = Note(id, title, content)
+            return note
+
 class Note:
     def __init__(self, id=None, title=None, content=''):
         self.id = id
