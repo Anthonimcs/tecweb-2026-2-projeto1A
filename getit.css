@@ -236,6 +236,67 @@ body {
   color: #2c2c2c;
 }
 
+/* Página 404 */
+
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 520px;
+  max-width: 80%;
+  margin: 40px auto;
+  padding: 24px;
+
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+
+  text-align: center;
+}
+
+.not-found-image {
+  width: 320px;
+  max-width: 100%;
+  margin-bottom: 20px;
+  border-radius: 6px;
+}
+
+.not-found-title {
+  margin-bottom: 10px;
+
+  font-family: 'Permanent Marker', cursive;
+  font-size: 30px;
+  color: #2c2c2c;
+}
+
+.not-found-message {
+  margin-bottom: 24px;
+
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  color: #4c4c4c;
+}
+
+.btn-voltar {
+  display: block;
+
+  width: 100%;
+  padding: 10px 0;
+
+  background-color: #f7d736;
+  color: #2c2c2c;
+
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+
+  border-radius: 4px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+
+  cursor: pointer;
+}
+
 .card-color-1 { background-color: #ead3a7; }
 .card-color-2 { background-color: #9de0f5; }
 .card-color-3 { background-color: #ef89ba; }

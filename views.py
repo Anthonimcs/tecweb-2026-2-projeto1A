@@ -71,3 +71,11 @@ def update_note(request, note_id):
         note = db.get_note(note_id)
         body = load_template('update.html').format(title=note.title, details=note.content) 
         return build_response(body=body)
+
+def not_found():
+    body = load_template('404.html')
+    return build_response(
+                            body=body,
+                            code=404,
+                            reason='Not Found'
+                        )
