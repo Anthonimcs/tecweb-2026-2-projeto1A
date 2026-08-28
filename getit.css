@@ -382,6 +382,17 @@ body {
   color: #2c2c2c;
 }
 
+.form-error {
+  margin: 6px 0;
+
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  text-align: center;
+
+  color: #c62828;
+}
+
 .card-color-1 { background-color: #ead3a7; }
 .card-color-2 { background-color: #9de0f5; }
 .card-color-3 { background-color: #ef89ba; }

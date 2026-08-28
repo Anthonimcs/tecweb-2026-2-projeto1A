@@ -29,11 +29,9 @@ while True:
     elif route == '':
         response = index(request)
     elif route.startswith('delete/'):
-        note_id = int(route.split("/")[1])
-        response = delete_note(request, note_id)
+        response = delete_note(request, route)
     elif route.startswith('update/'):
-            note_id = int(route.split("/")[1])
-            response = update_note(request, note_id)
+        response = update_note(request, route)
     else:
         response = not_found()
 
