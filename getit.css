@@ -297,6 +297,91 @@ body {
   cursor: pointer;
 }
 
+/* Confirmação de exclusão */
+
+.delete-confirmation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 520px;
+  max-width: 80%;
+  margin: 40px auto;
+  padding: 24px;
+
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+
+  text-align: center;
+}
+
+.delete-title {
+  margin-bottom: 8px;
+
+  font-family: 'Permanent Marker', cursive;
+  font-size: 28px;
+  color: #2c2c2c;
+}
+
+.delete-message {
+  margin-bottom: 24px;
+
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  color: #4c4c4c;
+}
+
+.delete-note {
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+  margin-bottom: 28px;
+}
+
+.delete-actions {
+  display: flex;
+  width: 100%;
+  gap: 12px;
+}
+
+.delete-form {
+  flex: 1;
+  display: flex;
+}
+
+.btn-nao,
+.btn-sim {
+  flex: 1;
+  box-sizing: border-box;
+
+  padding: 10px;
+
+  border: none;
+  border-radius: 4px;
+
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+
+  cursor: pointer;
+}
+
+.btn-nao {
+  background-color: #eeeeee;
+  color: #2c2c2c;
+}
+
+.btn-sim {
+  width: 100%;
+
+  background-color: #f7d736;
+  color: #2c2c2c;
+}
+
 .card-color-1 { background-color: #ead3a7; }
 .card-color-2 { background-color: #9de0f5; }
 .card-color-3 { background-color: #ef89ba; }

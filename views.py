@@ -40,10 +40,6 @@ def index(request):
 
     return build_response(body=body)
 
-def delete_note(id):
-    db = Database("notes")
-    db.delete(id)
-
 def update_note(request, note_id):
     db = Database("notes")
     if request.startswith('POST'):
@@ -79,3 +75,17 @@ def not_found():
                             code=404,
                             reason='Not Found'
                         )
+
+def delete_note(request, note_id):
+    db = Database("notes")
+    if request.startswith('POST'):
+        db.delete(note_id)
+        return build_response(
+                                code=303,
+                                reason='See Other',
+                                headers='Location: /'
+                            )
+    else: 
+        note = db.get_note(note_id)
+        body = load_template('delete.html').format(title=note.title,details=note.content, id=note.id) 
+        return build_response(body=body)

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get-it</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+    integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw=="
+    crossorigin="anonymous"
+  />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto&family=Permanent+Marker&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="/getit.css" />
+</head>
+  <body>
+    <div class="appbar">
+      <img src="/img/logo-getit.png" class="logo" />
+      <span class="subtitle">Como o Post-it, mas com outro verbo</span>
+    </div>
+
+    <main class="container">
+    <div class="delete-confirmation">
+        <h1 class="delete-title">Confirmar exclusão</h1>
+
+        <p class="delete-message">
+        Tem certeza que deseja apagar esta anotação?
+        </p>
+
+        <div class="delete-note">
+            <div class="card">
+                <h3 class="card-title">{title}</h3>
+
+                <div class="card-content">
+                <p>{details}</p>
+                </div>
+            </div>
+            </div>
+
+        <div class="delete-actions">
+        <a class="btn-nao" href="/">Não</a>
+
+        <form class="delete-form" method="post" action="/delete/{id}">
+            <button class="btn-sim" type="submit">Sim</button>
+        </form>
+        </div>
+    </div>
+    </main>
+    <script type="text/javascript" src="/getit.js"></script>
+  </body>
+
+</html>

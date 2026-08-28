@@ -30,12 +30,7 @@ while True:
         response = index(request)
     elif route.startswith('delete/'):
         note_id = int(route.split("/")[1])
-        delete_note(note_id)
-        response = build_response(
-            code=303,
-            reason='See Other',
-            headers='Location: /'
-        )
+        response = delete_note(request, note_id)
     elif route.startswith('update/'):
             note_id = int(route.split("/")[1])
             response = update_note(request, note_id)
