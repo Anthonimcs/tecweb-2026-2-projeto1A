@@ -31,10 +31,13 @@ def index(request):
     # Se tiver curiosidade: https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions
     note_template = load_template('components/note.html')
 
-    notes_li = [
-        note_template.format(title=note.title, details=note.content, id=note.id)
-        for note in all_notes
-    ]
+    notes_li = []
+    for note in all_notes:
+        if note.favorite == 1:
+            favorite_icon = '⭐'
+        else:
+            favorite_icon ='☆'
+        notes_li.append(note_template.format(title=note.title, details=note.content, id=note.id, favorite = favorite_icon))
 
     notes = '\n'.join(notes_li)
     body = load_template('index.html').format(notes=notes, error = error)
@@ -102,3 +105,17 @@ def delete_note(request, route):
         note = db.get_note(note_id)
         body = load_template('delete.html').format(title=note.title,details=note.content, id=note.id) 
         return build_response(body=body)
+
+def favorite_note(request, route):
+    note_id = int(route.split("/")[1])
+    db = Database("notes")
+    note = db.get_note(note_id)
+    if note.favorite == 1:
+        db.favorite(note_id=note_id,favorite=0)
+    else: 
+        db.favorite(note_id=note_id,favorite=1)
+    return build_response(
+                            code=303,
+                            reason='See Other',
+                            headers='Location: /'
+                            )

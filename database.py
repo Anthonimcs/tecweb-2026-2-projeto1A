@@ -7,7 +7,8 @@ class Database:
             CREATE TABLE IF NOT EXISTS note (
                 id INTEGER PRIMARY KEY,
                 title TEXT,
-                content TEXT NOT NULL
+                content TEXT NOT NULL,
+                favorite INTEGER NOT NULL DEFAULT 0
             );      
         """)
     def add(self, note):
@@ -18,14 +19,20 @@ class Database:
         self.conn.commit()
 
     def get_all(self):
-        cursor = self.conn.execute("SELECT id, title, content FROM note")
+        cursor = self.conn.execute("SELECT id, title, content, favorite FROM note")
         notes = []
+        notes_not_fav = []
         for linha in cursor:
             id = linha[0]
             title = linha[1]
             content = linha[2]
-            note = Note(id, title, content)
-            notes.append(note)
+            favorite = linha[3]
+            note = Note(id, title, content, favorite)
+            if note.favorite == 1: 
+                notes.append(note)
+            else:
+                notes_not_fav.append(note)
+        notes += notes_not_fav        
         return notes
 
     def update(self, entry):
@@ -39,18 +46,24 @@ class Database:
         self.conn.commit()
 
     def get_note(self, id_note):
-            cursor = self.conn.execute("SELECT id, title, content FROM note")
+            cursor = self.conn.execute("SELECT id, title, content, favorite FROM note")
             for linha in cursor:
                 id = linha[0]
                 title = linha[1]
                 content = linha[2]
+                favorite = linha[3]
                 if id == id_note:
-                    note = Note(id, title, content)
+                    note = Note(id, title, content, favorite)
             return note
+    def favorite(self, note_id, favorite):
+        self.conn.execute("UPDATE note SET favorite = ? WHERE id = ?", 
+        (favorite, note_id))
+        self.conn.commit()
 
 class Note:
-    def __init__(self, id=None, title=None, content=''):
+    def __init__(self, id=None, title=None, content='', favorite=0):
         self.id = id
         self.title = title
         self.content = content
+        self.favorite = favorite
     

@@ -114,7 +114,7 @@ body {
   flex-direction: column;
 
   width: 182px;
-  height: 110px;
+  min-height: 110px;
 
   padding: 10px;
   border-radius: 6px;
@@ -122,24 +122,35 @@ body {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.40);
 }
 
-.delete-button {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-}
-
 .update-button {
   position: absolute;
   top: 8px;
   right: 35px;
+
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.delete-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  font-size: 16px;
+  text-decoration: none;
 }
 
 .card-title {
   margin: 0;
 
+  padding-right: 78px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+
   font-family: 'Permanent Marker', cursive;
   font-weight: bold;
   font-size: 18px;
+  line-height: 1.2;
   color: #000000;
 }
 
@@ -391,6 +402,18 @@ body {
   text-align: center;
 
   color: #c62828;
+}
+
+.favorite-button {
+  position: absolute;
+  top: 6px;
+  right: 62px;
+
+  color: #2c2c2c;
+  font-size: 20px;
+  line-height: 1;
+
+  text-decoration: none;
 }
 
 .card-color-1 { background-color: #ead3a7; }
